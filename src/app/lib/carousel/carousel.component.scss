@@ -5,3 +5,32 @@
     min-height: 600px;
     position: relative;
 }
+
+.carousel-btn{
+    position: absolute;
+    top: 50%;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    font-size: 23px;
+    cursor: pointer;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    &.btn-right{
+        right: 20px;
+    }
+
+    &.btn-left{
+        left: 20px;
+    }
+
+    &[disabled]{
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
