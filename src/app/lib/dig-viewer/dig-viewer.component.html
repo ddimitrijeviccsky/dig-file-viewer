@@ -11,6 +11,7 @@
             <dig-image-viewer *ngSwitchCase="TYPE.IMAGE_JPEG" [base64image]="payload.file.body"></dig-image-viewer>
             <dig-image-viewer *ngSwitchCase="TYPE.IMAGE_PNG" [base64image]="payload.file.body"></dig-image-viewer>
             <dig-pdf-viewer *ngSwitchCase="TYPE.PDF" [pdfUrl]="payload.file.url"></dig-pdf-viewer>
+            <dig-video-viewer *ngSwitchCase="TYPE.VIDEO" [base64video]="payload.file.body"></dig-video-viewer>
             <dig-other-viewer *ngSwitchDefault [file]="payload.file"></dig-other-viewer>
         </ng-container>
     </div>
