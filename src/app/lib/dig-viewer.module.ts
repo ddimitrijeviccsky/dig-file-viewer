@@ -12,6 +12,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
 import { DigViewerComponent } from './dig-viewer';
 import { DigViewerCarouselComponent } from './carousel';
 import { DigOtherViewerComponent } from './dig-other-viewer';
+import { DigImageViewerComponent } from './dig-image-viewer';
 
 // Services
 import { ViewerService } from './shared';
@@ -20,7 +21,8 @@ import { ViewerService } from './shared';
     declarations: [
         DigViewerComponent,
         DigViewerCarouselComponent,
-        DigOtherViewerComponent
+        DigOtherViewerComponent,
+        DigImageViewerComponent
     ],
     imports: [
         CommonModule,
