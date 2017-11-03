@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import {
     ComponentPortal,
     Portal,
@@ -10,6 +10,7 @@ import {
     QueryList,
     ViewChild
 } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'dig-carousel',
@@ -17,21 +18,35 @@ import {
     styleUrls: ['./carousel.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class DigViewerCarouselComponent {
-    @Input() urls: string[];
-    @Input() selectedUrlIndex: number;
-    @ViewChild(TemplatePortalDirective) templatePortal: Portal<any>;
+    private _urls: string[];
+    private _selectedUrlIndex = 0;
 
-    currentUrl: string;
-
-    get selected(){
-        this.currentUrl = this.urls[this.selectedUrlIndex];
-        return this.currentUrl;
+    @Input()
+    set urls(urls: string[]) {
+        this._urls = urls;
+        // reset the carousel
+        this.currentUrl$.next(urls[0]);
+    }
+    get urls() {
+        return this._urls;
     }
 
+    @Input()
+    set selectedUrlIndex(index: number) {
+        this._selectedUrlIndex = index;
+        const currentUrl = this.urls[this._selectedUrlIndex];
+        this.currentUrl$.next(currentUrl);
+    }
+    get selectedUrlIndex() {
+        return this._selectedUrlIndex;
+    }
 
-    constructor(public overlay: Overlay) {}
+    @ViewChild(TemplatePortalDirective) templatePortal: Portal<any>;
+
+    currentUrl$: Subject<string> = new Subject();
+
+    constructor(public overlay: Overlay) { }
 
     openPanelWithBackdrop() {
         const config = new OverlayConfig({

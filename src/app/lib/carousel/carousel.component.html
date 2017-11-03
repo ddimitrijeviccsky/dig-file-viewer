@@ -1,6 +1,8 @@
 <ng-template cdk-portal>
     <div class="dig-wrapper">
-        <h1>{{ selected }}</h1>
+
+        <dig-viewer [selectedUrl]="currentUrl$ | async"></dig-viewer>
+
         <button *ngIf="urls.length > 1" class="carousel-btn btn-left" (click)="slidePrev()" [disabled]="selectedUrlIndex === 0">
             <fa name="angle-left"></fa>
         </button>
@@ -8,4 +10,5 @@
             <fa name="angle-right"></fa>
         </button>
     </div>
+
 </ng-template>

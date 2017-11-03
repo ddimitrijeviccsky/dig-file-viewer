@@ -1,0 +1,25 @@
+.file-body{
+    padding: 60px 0 30px 0;
+    position: relative;
+    text-align: center;
+    color: #838080;
+
+    p{
+        margin-bottom: 30px;
+    }
+
+    a{
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        width: 150px;
+        font-size: 26px;
+        text-transform: uppercase;
+        border: 1px solid #838080;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #838080;
+        background-color: #f1f1f1;
+    }
+}
