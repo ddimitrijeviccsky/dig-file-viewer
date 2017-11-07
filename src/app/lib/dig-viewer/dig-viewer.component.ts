@@ -27,7 +27,7 @@ export class DigViewerComponent {
         this.payload$ = this.viewerService
             .getFile(url)
             .map(file => ({ file, valid: true as true }))
-            .catch(err => of({ message: err, valid: false as false }));
+            .catch(err => of({ message: err.message, valid: false as false }));
     }
 
     constructor(private viewerService: ViewerService) { }

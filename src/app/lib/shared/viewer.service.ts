@@ -24,7 +24,7 @@ export class ViewerService {
 
     getFile(url: string): Observable<ViewFile> {
         if (!this.isValidUrl.test(url)) {
-            return Observable.throw(`Wrong url format for "${url}"`);
+            return Observable.throw({message: `Wrong url format for "${url}"`});
         }
 
         return this.fileCache.has(url)
