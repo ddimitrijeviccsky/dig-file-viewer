@@ -1,0 +1,21 @@
+<ng-container *ngIf="payload$ | async as payload">
+    
+    <div class="file-wrapper" *ngIf="payload.valid; else invalid">
+        <div class="file-header">
+            <h3>{{ payload.file?.url }}</h3>
+            <a [attr.href]="payload.file?.url" target="_blank">
+                <fa name="download"></fa>
+            </a>
+        </div>
+        <ng-container [ngSwitch]="payload.file?.type">
+            <dig-other-viewer *ngSwitchDefault [file]="payload.file"></dig-other-viewer>
+        </ng-container>
+    </div>
+
+    <ng-template #invalid>
+        <div class="error-box">
+            <h3>{{payload.message}}</h3>
+        </div>
+    </ng-template>
+</ng-container>
+    
