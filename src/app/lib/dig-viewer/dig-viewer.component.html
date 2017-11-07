@@ -3,7 +3,7 @@
     <div class="file-wrapper" *ngIf="payload.valid; else invalid">
         <div class="file-header">
             <h3>{{ payload.file?.url }}</h3>
-            <a [attr.href]="payload.file?.url" target="_blank">
+            <a [attr.href]="payload.file?.url" download>
                 <fa name="download"></fa>
             </a>
         </div>
