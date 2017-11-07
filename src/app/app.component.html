@@ -1,5 +1,5 @@
 <div class="main-view-wrapper">
   <input type="text" (keydown.enter)="populateUrls(urls.value); digCarousel.openPanelWithBackdrop();" #urls>
   <button (click)="digCarousel.openPanelWithBackdrop(); populateUrls(urls.value)">View</button>
-  <dig-carousel #digCarousel></dig-carousel>
+  <dig-carousel [urls]="digUrls" [selectedUrlIndex]="0" #digCarousel></dig-carousel>
 </div>

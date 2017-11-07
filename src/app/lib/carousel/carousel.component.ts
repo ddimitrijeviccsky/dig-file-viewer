@@ -18,10 +18,20 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class DigViewerCarouselComponent{
+export class DigViewerCarouselComponent {
+    @Input() urls: string[];
+    @Input() selectedUrlIndex: number;
     @ViewChild(TemplatePortalDirective) templatePortal: Portal<any>;
 
-    constructor(public overlay: Overlay){}
+    currentUrl: string;
+
+    get selected(){
+        this.currentUrl = this.urls[this.selectedUrlIndex];
+        return this.currentUrl;
+    }
+
+
+    constructor(public overlay: Overlay) {}
 
     openPanelWithBackdrop() {
         const config = new OverlayConfig({
@@ -32,5 +42,17 @@ export class DigViewerCarouselComponent{
         const overlayRef = this.overlay.create(config);
         overlayRef.attach(this.templatePortal);
         overlayRef.backdropClick().subscribe(() => overlayRef.detach());
+    }
+
+    slideNext() {
+        if (this.selectedUrlIndex < (this.urls.length - 1)) {
+            this.selectedUrlIndex += 1;
+        }
+    }
+
+    slidePrev() {
+        if (this.selectedUrlIndex > 0) {
+            this.selectedUrlIndex -= 1;
+        }
     }
 }
