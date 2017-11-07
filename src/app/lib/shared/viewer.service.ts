@@ -11,6 +11,8 @@ interface ResponseCache {
     [url: string]: ViewFile;
 }
 
+const ENCODE = [FileMIMEType.IMAGE_JPEG, FileMIMEType.IMAGE_PNG];
+
 @Injectable()
 export class ViewerService {
 
@@ -39,6 +41,13 @@ function responseToDigFile(httpResponse: HttpResponse<Object>): Observable<ViewF
     const url = httpResponse.url;
 
     return Observable.create((observer: Observer<ViewFile>) => {
+        // we can remove this when we figure out
+        // why encoded pdf wont render
+        if (!ENCODE.includes(type as FileMIMEType)) {
+            observer.next(null);
+            observer.complete();
+            return;
+        }
 
         const reader = new FileReader();
 

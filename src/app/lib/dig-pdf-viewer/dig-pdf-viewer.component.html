@@ -1,0 +1,10 @@
+<div class="pdf-body">
+    <iframe [attr.src]="sanitizer.bypassSecurityTrustResourceUrl(pdfUrl)"
+        width="700"
+        height="500"
+        frameborder="0"
+        webkitallowfullscreen
+        mozallowfullscreen
+        allowfullscreen>
+    </iframe>
+</div>
