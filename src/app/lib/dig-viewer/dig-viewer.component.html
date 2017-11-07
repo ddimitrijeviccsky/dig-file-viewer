@@ -1,9 +1,9 @@
-<ng-container *ngIf="payload$ | async as payload">
+<ng-container *ngIf="payload$ | async as payload; else loading">
     
     <div class="file-wrapper" *ngIf="payload.valid; else invalid">
         <div class="file-header">
             <h3>{{ payload.file?.url }}</h3>
-            <a [attr.href]="payload.file?.url" download>
+            <a [attr.href]="payload.file?.url" download target="_blank">
                 <fa name="download"></fa>
             </a>
         </div>
@@ -22,4 +22,11 @@
         </div>
     </ng-template>
 </ng-container>
+
+<ng-template #loading>
+    <h3 class="dig-loader">
+        <fa name="spinner" animation="spin"></fa> 
+        Loading...
+    </h3>
+</ng-template>
     
