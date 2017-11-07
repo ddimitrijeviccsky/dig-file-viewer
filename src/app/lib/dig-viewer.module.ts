@@ -14,6 +14,7 @@ import { DigViewerCarouselComponent } from './carousel';
 import { DigOtherViewerComponent } from './dig-other-viewer';
 import { DigImageViewerComponent } from './dig-image-viewer';
 import { DigPdfViewerComponent } from './dig-pdf-viewer';
+import { DigVideoViewerComponent } from './dig-video-viewer';
 
 // Services
 import { ViewerService } from './shared';
@@ -24,7 +25,8 @@ import { ViewerService } from './shared';
         DigViewerCarouselComponent,
         DigOtherViewerComponent,
         DigImageViewerComponent,
-        DigPdfViewerComponent
+        DigPdfViewerComponent,
+        DigVideoViewerComponent
     ],
     imports: [
         CommonModule,

@@ -11,7 +11,7 @@ interface ResponseCache {
     [url: string]: ViewFile;
 }
 
-const ENCODE = [FileMIMEType.IMAGE_JPEG, FileMIMEType.IMAGE_PNG];
+const ENCODE = [FileMIMEType.IMAGE_JPEG, FileMIMEType.IMAGE_PNG, FileMIMEType.VIDEO];
 
 @Injectable()
 export class ViewerService {
