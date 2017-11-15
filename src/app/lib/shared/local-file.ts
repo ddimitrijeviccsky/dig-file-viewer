@@ -1,8 +1,7 @@
 import { FileMIMEType } from './mime-types';
 
-export interface ViewFile {
+export interface LocalFile {
     type: FileMIMEType | string;
     body: any;
-    url: string;
     name: string;
 }

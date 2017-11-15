@@ -1,8 +1,18 @@
 <div class="main-view-wrapper">
-  <input type="text" (keydown.enter)="populateUrls(urls.value, digCarousel)" #urls>
-
-  <button (click)="populateUrls(urls.value, digCarousel)">View</button>
+  
+  <div class="input-viewer">
+    <input type="text" (keydown.enter)="populateUrls(urls.value, digCarousel)" #urls>
+    <button (click)="populateUrls(urls.value, digCarousel)">View</button>
+  </div>
 
   <dig-carousel [urls]="digUrls" [selectedUrlIndex]="0" #digCarousel>
   </dig-carousel>
+
+  <div class="clearfix">
+    <div class="form-wrapper">
+      <h2>File Uploader</h2>
+    </div>
+    <dig-file-uploader></dig-file-uploader>
+  </div>
+
 </div>

@@ -11,7 +11,7 @@ interface ResponseCache {
     [url: string]: ViewFile;
 }
 
-const ENCODE = [FileMIMEType.IMAGE_JPEG, FileMIMEType.IMAGE_PNG, FileMIMEType.VIDEO];
+const ENCODE = [FileMIMEType.IMAGE_JPEG, FileMIMEType.IMAGE_PNG, FileMIMEType.VIDEO, FileMIMEType.PDF];
 
 @Injectable()
 export class ViewerService {
@@ -40,9 +40,8 @@ function responseToDigFile(httpResponse: HttpResponse<Object>): Observable<ViewF
     const type = httpResponse.headers.get('content-type');
     const url = httpResponse.url;
 
-    return Observable.create((observer: Observer<ViewFile>) => {
-        // we can remove this when we figure out
-        // why encoded pdf wont render
+    return Observable.create((observer: Observer<any>) => {
+
         if (!ENCODE.includes(type as FileMIMEType)) {
             observer.next(null);
             observer.complete();
@@ -60,5 +59,5 @@ function responseToDigFile(httpResponse: HttpResponse<Object>): Observable<ViewF
 
         reader.onerror = () => observer.error('Failed to parse the file.');
     })
-    .map(body => ({ url, body, type }));
+    .map(body => ({ name: url, body, type, url }));
 }

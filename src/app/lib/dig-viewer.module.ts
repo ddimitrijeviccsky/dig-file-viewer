@@ -15,10 +15,11 @@ import { DigOtherViewerComponent } from './dig-other-viewer';
 import { DigImageViewerComponent } from './dig-image-viewer';
 import { DigPdfViewerComponent } from './dig-pdf-viewer';
 import { DigVideoViewerComponent } from './dig-video-viewer';
+import { DigFileUploaderComponent } from './file-uploader';
 import { DigFileItemComponent } from './file-item';
 
 // Services
-import { ViewerService } from './shared';
+import { ViewerService, FileService } from './shared';
 
 // Pipes
 import { TruncatePipe } from './shared';
@@ -31,6 +32,7 @@ import { TruncatePipe } from './shared';
         DigImageViewerComponent,
         DigPdfViewerComponent,
         DigVideoViewerComponent,
+        DigFileUploaderComponent,
         DigFileItemComponent,
         TruncatePipe
     ],
@@ -43,8 +45,9 @@ import { TruncatePipe } from './shared';
     ],
     exports: [
         DigViewerCarouselComponent,
+        DigFileUploaderComponent
     ],
-    providers: []
+    providers: [ FileService ]
 })
 
 export class DigViewerModule {

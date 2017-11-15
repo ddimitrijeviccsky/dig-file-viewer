@@ -1,0 +1,15 @@
+<div draggable="true" class="upload-box" [ngClass]="dragAreaClass">
+    <a href="javascript:void(0)" (click)="file.click()" >
+        <span>Drag or upload content</span>
+    </a>
+    <input type="file"
+            #file
+            [multiple]="true"
+            (change) = "onFileChange($event)"/>
+</div>
+<dig-file-item *ngFor="let file of files; let i=index; trackBy: trackByRef"
+                [file]="file" 
+                (remove)="removeFile($event)"
+                (view)="viewFile($event, i, digCarousel)">
+</dig-file-item>
+<dig-carousel [urls]="uploadedFiles" [selectedUrlIndex]="selectedFileIndex" #digCarousel></dig-carousel>

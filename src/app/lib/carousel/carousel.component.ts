@@ -57,6 +57,8 @@ export class DigViewerCarouselComponent {
         const overlayRef = this.overlay.create(config);
         overlayRef.attach(this.templatePortal);
         overlayRef.backdropClick().subscribe(() => overlayRef.detach());
+        const currentUrl = this.urls[this._selectedUrlIndex];
+        this.currentUrl$.next(currentUrl);
     }
 
     slideNext() {
