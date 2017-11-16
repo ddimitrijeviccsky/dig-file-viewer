@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DigPdfViewerComponent {
-    @Input() pdfUrl: string;
+    @Input() base64pdf: string;
 
     constructor(public sanitizer: DomSanitizer) { }
 }

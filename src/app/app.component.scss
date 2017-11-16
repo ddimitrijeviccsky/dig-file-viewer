@@ -1,4 +1,28 @@
 .main-view-wrapper{
-    text-align: center;
     padding-top: 70px;
+    width: 900px;
+    margin: 0 auto;
+
+    .input-viewer{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+.form-wrapper{
+    padding: 10px 0;
+    color: lightslategray;
+    border-bottom: 1px solid lightslategray;
+    margin-bottom: 10px;
+
+    h2{
+        display: inline;
+    }
+    button{
+        float: right;
+    }
+}
+
+.clearfix{
+    clear: both;
 }

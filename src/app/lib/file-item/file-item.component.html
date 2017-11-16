@@ -1,0 +1,37 @@
+<div class="item-wrapper">
+    
+    <div class="item-name">
+        <h3>{{ file.name | truncate: 40 }}</h3>
+    </div>
+
+    <div class="item-state-box">
+
+        <ng-container [ngSwitch]="file.state">
+        
+            <div class="progress-state" *ngSwitchCase="STATE.PROGRESS">
+                <div class="progress-box">
+                    <div class="progress-bar"
+                            [ngStyle]="{ 'width': file.progress + '%' }">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="edit-state" *ngSwitchCase="STATE.EDIT">
+                <p><span (click)="removeFile(file)">Remove</span> | <span (click)="viewFile(file)">View</span></p>    
+            </div>
+    
+            <div class="ready-state" *ngSwitchCase="STATE.FINISHED">
+                <p (click)="viewFile(file)">View</p>
+            </div>
+
+            <div class="failed-state" *ngSwitchCase="STATE.FAILED">
+                <p>Upload: Failed</p>
+            </div>
+
+            <div *ngSwitchDefault></div>
+        
+        </ng-container>
+
+    </div>
+
+</div>

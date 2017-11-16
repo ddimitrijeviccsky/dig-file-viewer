@@ -1,0 +1,43 @@
+.upload-box{
+    height: 70px;
+    width: 100%;
+    float: left;
+    display: block;
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+
+    &.dragarea{
+        font-size: 24px;
+        border: 3px dashed #bbb; 
+        background-color: #f1f1f1;
+        color: #bbb;
+    }
+    &.droparea{
+        font-size: 24px;
+        border: 3px dotted #bbb; 
+        background-color: #eff;
+        color: #aaa;
+    }
+
+    input[type=file]{
+        display: none;
+    }
+
+    a{
+        display: block;
+        height: 100%;
+        text-decoration: none;
+        color: lightslategray;
+        font-weight: 600;
+
+        span{
+            position: absolute;
+            width: 80%;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+        }
+    }
+}
