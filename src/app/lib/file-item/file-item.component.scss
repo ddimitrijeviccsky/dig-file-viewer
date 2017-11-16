@@ -1,0 +1,60 @@
+.item-wrapper{
+    display: block;
+    clear: both;
+    padding: 5px 10px;
+
+    .item-name{
+        float: left;
+        
+        h3{
+            text-transform: uppercase;
+            color: lightslategray;
+            font-weight: 400;
+            font-size: 19px;
+        }
+    }
+
+    .item-state-box{
+        float: right;
+        text-align: center;
+
+        p{
+            text-transform: uppercase;
+            color: lightslategray;
+            font-size: 19px;
+
+            span{
+                cursor: pointer;
+            }
+        }
+
+        .progress-state{
+            width: 150px;
+
+            .progress-box{
+                width: 100%;
+                border: 1px solid lightslategray;
+                height: 20px;
+                margin: 20px 0;
+
+                .progress-bar{
+                    height: 100%;
+                    background-color: #bbb;
+                    transition: all 500ms ease-out
+                }
+            }
+        }
+
+        .ready-state{
+            p{
+                cursor: pointer;
+            }
+        }
+
+        .failed-state{
+            p{
+                color: red;
+            }
+        }
+    }
+}

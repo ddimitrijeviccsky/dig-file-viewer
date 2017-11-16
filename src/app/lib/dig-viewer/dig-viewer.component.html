@@ -2,7 +2,7 @@
     
     <div class="file-wrapper" *ngIf="payload.valid; else invalid">
         <div class="file-header">
-            <h3>{{ payload.file?.url }}</h3>
+            <h3>{{ payload.file?.name | truncate: 70}}</h3>
             <a [attr.href]="payload.file?.url" download target="_blank">
                 <fa name="download"></fa>
             </a>
@@ -10,7 +10,7 @@
         <ng-container [ngSwitch]="payload.file?.type">
             <dig-image-viewer *ngSwitchCase="TYPE.IMAGE_JPEG" [base64image]="payload.file.body"></dig-image-viewer>
             <dig-image-viewer *ngSwitchCase="TYPE.IMAGE_PNG" [base64image]="payload.file.body"></dig-image-viewer>
-            <dig-pdf-viewer *ngSwitchCase="TYPE.PDF" [pdfUrl]="payload.file.url"></dig-pdf-viewer>
+            <dig-pdf-viewer *ngSwitchCase="TYPE.PDF" [base64pdf]="payload.file.body"></dig-pdf-viewer>
             <dig-video-viewer *ngSwitchCase="TYPE.VIDEO" [base64video]="payload.file.body"></dig-video-viewer>
             <dig-other-viewer *ngSwitchDefault [file]="payload.file"></dig-other-viewer>
         </ng-container>

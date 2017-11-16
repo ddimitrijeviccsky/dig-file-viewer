@@ -15,9 +15,14 @@ import { DigOtherViewerComponent } from './dig-other-viewer';
 import { DigImageViewerComponent } from './dig-image-viewer';
 import { DigPdfViewerComponent } from './dig-pdf-viewer';
 import { DigVideoViewerComponent } from './dig-video-viewer';
+import { DigFileUploaderComponent } from './file-uploader';
+import { DigFileItemComponent } from './file-item';
 
 // Services
-import { ViewerService } from './shared';
+import { ViewerService, FileService } from './shared';
+
+// Pipes
+import { TruncatePipe } from './shared';
 
 @NgModule({
     declarations: [
@@ -26,7 +31,10 @@ import { ViewerService } from './shared';
         DigOtherViewerComponent,
         DigImageViewerComponent,
         DigPdfViewerComponent,
-        DigVideoViewerComponent
+        DigVideoViewerComponent,
+        DigFileUploaderComponent,
+        DigFileItemComponent,
+        TruncatePipe
     ],
     imports: [
         CommonModule,
@@ -37,8 +45,9 @@ import { ViewerService } from './shared';
     ],
     exports: [
         DigViewerCarouselComponent,
+        DigFileUploaderComponent
     ],
-    providers: []
+    providers: [ FileService ]
 })
 
 export class DigViewerModule {
