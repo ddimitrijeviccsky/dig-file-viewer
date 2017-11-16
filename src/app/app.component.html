@@ -15,4 +15,15 @@
     <dig-file-uploader></dig-file-uploader>
   </div>
 
+  <div class="clearfix">
+    <div class="form-wrapper">
+      <h2>File List component</h2>
+    </div>
+    <div>
+      <h5>Add files to test file list component</h5>
+      <input type="file" multiple (change)="populateFileList($event)">
+    </div>
+    <dig-file-list [files]="fileList"></dig-file-list>
+  </div>
+
 </div>

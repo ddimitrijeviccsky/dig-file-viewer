@@ -1,0 +1,7 @@
+<ng-container>
+    <dig-file-item *ngFor="let file of uploadFile; let i=index; trackBy: trackByRef"
+                    [file]="file"
+                    (view)="viewFile($event, i, digCarousel)">
+    </dig-file-item>
+    <dig-carousel [urls]="carouselFiles" [selectedUrlIndex]="selectedFileIndex" #digCarousel></dig-carousel>
+</ng-container>
