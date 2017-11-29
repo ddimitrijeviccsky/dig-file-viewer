@@ -9,7 +9,7 @@ import { DigViewerCarouselComponent } from './lib/carousel';
 })
 export class AppComponent {
     digUrls: string[] = [];
-    fileList = [];
+    fileListUrls = [];
 
     populateUrls(urls: string, digCarousel: DigViewerCarouselComponent) {
         if (urls.length > 0) {
@@ -18,8 +18,7 @@ export class AppComponent {
         }
     }
 
-    populateFileList(event) {
-        const files = Array.from(event.target.files);
-        this.fileList = [...this.fileList, ...files];
+    populateFileList(urls) {
+        this.fileListUrls = urls.split(' ');
     }
 }

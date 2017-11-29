@@ -1,29 +1,29 @@
+/* tslint:disable:curly */
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { LocalFilesService, FileService, ViewerService, guid, UploadFile, UPLOAD_FILE_STATE } from '../shared';
+import { ViewerService, guid, UploadFile, UPLOAD_FILE_STATE } from '../shared';
 
 @Component({
     selector: 'dig-file-list',
     templateUrl: './file-list.component.html',
     styleUrls: ['./file-list.component.scss'],
-    providers: [
-        {provide: ViewerService, useClass: LocalFilesService}
-    ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DigFileListComponent {
     private _selectedFileIndex: number;
-    private _carouselFiles: string[] = [];
+    private _carouselUrls: string[] = [];
     private _files: UploadFile[];
+    errorMessages: string[] = [];
 
     @Input()
-    set files (files: File[]){
+    set files (urls: string[]){
 
-        this._carouselFiles = [];
+        this._carouselUrls = urls;
         this._files = [];
+        this.errorMessages = [];
         this._selectedFileIndex = null;
 
-        files.forEach(file => {
-            this.transformAndSend(file);
+        urls.forEach(url => {
+            this.transformAndSend(url);
         });
     }
 
@@ -31,28 +31,41 @@ export class DigFileListComponent {
         return this._files;
     }
 
-    get carouselFiles() {
-        return this._carouselFiles;
+    get carouselUrls() {
+        return this._carouselUrls;
     }
     get selectedFileIndex() {
         return this._selectedFileIndex;
     }
 
-    private transformAndSend(file) {
-        this.fileService.getLocalFile(file)
+    private transformAndSend(url) {
+        this.viewerService.getFile(url)
             .subscribe(response => {
-                this._carouselFiles = [...this._carouselFiles, JSON.stringify(response)];
-
-                const newFile = new UploadFile(file, guid());
-                newFile.state = UPLOAD_FILE_STATE.FINISHED;
-                this._files = [...this._files, newFile];
+                const newFile = new File([response.body], response.name, {type: response.type});
+                const uploadFile = new UploadFile(newFile, guid());
+                uploadFile.state = UPLOAD_FILE_STATE.FINISHED;
+                this._files = [...this._files, uploadFile];
                 this.ref.markForCheck();
-            }
-        );
+            },
+            err => {
+                this.removeUrl(url);
+                this.errorMessages = [...this.errorMessages, err.message];
+            });
+    }
+
+    removeUrl(url: string) {
+        const urlIndex = this._carouselUrls.findIndex(fileUrl => fileUrl === url);
+
+        if (urlIndex === -1) return;
+
+        this._carouselUrls = [
+            ...this._carouselUrls.slice(0, urlIndex),
+            ...this._carouselUrls.slice(urlIndex + 1)
+        ];
     }
 
     constructor(private ref: ChangeDetectorRef,
-                private fileService: FileService) {}
+                private viewerService: ViewerService) {}
 
     viewFile(file: UploadFile, fileIndex: number, carousel) {
         this._selectedFileIndex = fileIndex;

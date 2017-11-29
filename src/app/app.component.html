@@ -20,10 +20,11 @@
       <h2>File List component</h2>
     </div>
     <div>
-      <h5>Add files to test file list component</h5>
-      <input type="file" multiple (change)="populateFileList($event)">
+      <h5>Add urls to test file list component</h5>
+      <input type="text" (keydown.enter)="populateFileList(listUrls.value)" #listUrls>
+      <button (click)="populateFileList(listUrls.value)">Submit</button>
     </div>
-    <dig-file-list [files]="fileList"></dig-file-list>
+    <dig-file-list [files]="fileListUrls"></dig-file-list>
   </div>
 
 </div>
