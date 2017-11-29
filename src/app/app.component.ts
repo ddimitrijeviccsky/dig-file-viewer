@@ -9,11 +9,16 @@ import { DigViewerCarouselComponent } from './lib/carousel';
 })
 export class AppComponent {
     digUrls: string[] = [];
+    fileListUrls = [];
 
     populateUrls(urls: string, digCarousel: DigViewerCarouselComponent) {
         if (urls.length > 0) {
             this.digUrls = urls.split(' ');
             digCarousel.openPanelWithBackdrop();
         }
+    }
+
+    populateFileList(urls) {
+        this.fileListUrls = urls.split(' ');
     }
 }
